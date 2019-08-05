@@ -17,9 +17,8 @@ FROM alpine
 RUN \
     apk add --no-cache --update \
         ca-certificates \
-        tzdata \
-        curl
+        tzdata
 
-COPY --from=BUILD /app/annotation-poster /
+COPY --from=BUILD /app/annotation-poster /bin/
 
-ENTRYPOINT ["/annotation-poster"]
+ENTRYPOINT ["annotation-poster"]
