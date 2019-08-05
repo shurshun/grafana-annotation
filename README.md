@@ -4,17 +4,6 @@ grafana-annotation: Post graphite annotation to grafana 5+.
 
 go get -d "github.com/contentsquare/grafana-annotation"
 
-# Configure
-
-Will work with a configuration file (default to `~/.grafana-anotation-poster.yml`)
-
-## Configuration file
-
-```yaml
-grafanaUri: https://some-grafana-host.tld
-bearerToken: BearerTokenFromGrafana
-```
-
 ## Create a Bearer Token
 
 [Read the Docs](http://docs.grafana.org/http_api/auth/)
@@ -30,23 +19,32 @@ go build
 ## Options
 
 ```
-Usage of grafana-annotation:
-  -config-file string
-    	Configuration File (default "~/.grafana-anotation-poster.yml")
-  -data string
-    	Additional data.
-  -tag value
-    	Tags. may be repeated multiple times
-  -verbose
-    	Be Verbose.
-  -what string
-    	The What item to post. (default "$(hostname)")
+NAME:
+   annotation-poster - Tool to post graphite annotations to grafana
+
+USAGE:
+   main [global options] command [command options] [arguments...]
+
+VERSION:
+   0.1.0
+
+COMMANDS:
+   help, h  Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+   --data value   Additional data. [$GRAFANA_DATA]
+   --what value   The What item to post. [$GRAFANA_WHAT]
+   --tags value   Tags. [$GRAFANA_TAGS]
+   --token value  Bearer Token. [$GRAFANA_TOKEN]
+   --uri value    Example: https://some-grafana-host.tld [$GRAFANA_URI]
+   --help, -h     show help
+   --version, -v  print the version
 ```
 
 ## Example call
 
 ```
-~$ grafana-annotation -data "Details on this event" -tag foo \
-  -tag bar -what "Something happened on system foo with bar event"
+~$ grafana-annotation --data "Details on this event" --tags foo,bar \
+   -what "Something happened on system foo with bar event"
 ```
-   
+
